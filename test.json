@@ -1,0 +1,17 @@
+[
+    {
+    "name":"Pixel 3",
+    "price":27700,
+    "description":"最新的 Google 手機。"
+    },
+    {
+    "name":"Chromecast",
+    "price":1500,
+    "description":"在大荧幕上播放的影片。"
+    },
+    {
+    "name":"Pixel Book",
+    "price":12000,
+    "description":"最新的Chromebook产品。"
+    }
+]
