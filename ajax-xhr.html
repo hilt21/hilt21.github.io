@@ -12,13 +12,16 @@
         <div id="result"></div>
         <script>
             function getData(){
+                //利用fetch进行连接并取得资料
                 fetch("https://raw.githubusercontent.com/hilt21/hilt21.github.io/main/test.json").then(function(response){
                     return response.json();
                 }).then(function(data){
+                    //已经取得资料，把资料呈现在画面上
                     let result=document.querySelector("#result");
+                    result.innerHTML="";  //先清空画面
                     for(let i=0;i<data.length;i++){
                         let product=data[i];
-                        console.log(product.name);
+                        result.innerHTML+="<div>"+product.name+","+product.price+","+product.description+"</div>";
                     }
                 });
             }
