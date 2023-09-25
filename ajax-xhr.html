@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title>JavaScript: AJAX 网络连接实例</title>
+    </head>
+
+    <body>
+        <h3>AJAX / XHR 网络连接实例</h3>
+        <button onclick="getData();">连接取得资料</button>
+        <div id="result"></div>
+        <script>
+            function getData(){
+                fetch("https://raw.githubusercontent.com/hilt21/hilt21.github.io/main/test.json").then(function(response){
+                    return response.json();
+                }).then(function(data){
+                    let result=document.querySelector("#result");
+                    for(let i=0;i<data.length;i++){
+                        let product=data[i];
+                        console.log(product.name);
+                    }
+                });
+            }
+        </script>
+    </body>
+
+</html>
