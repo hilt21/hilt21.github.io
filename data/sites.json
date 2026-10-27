@@ -1,0 +1,110 @@
+{
+  "owner": "hilt21",
+  "projects": [
+    {
+      "id": "em-brake",
+      "name": "EM-Brake",
+      "eyebrow": "THE NEXT BRAKING CHAPTER",
+      "description": "沿着能量、控制与安全，探索铁路电机械制动的下一步。",
+      "category": "rail",
+      "url": "https://main.embrake.dev/",
+      "access": "需授权",
+      "featured": false,
+      "visual": "brake",
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "ai-native-lexicon",
+      "repo": "ai-native-lexicon",
+      "name": "AI Native Lexicon",
+      "eyebrow": "MAKE THE COMPLEX CLEAR",
+      "description": "给 AI 工程建立共同语言。从一个概念，走进一张知识地图。",
+      "category": "ai",
+      "url": "https://hilt21.github.io/ai-native-lexicon/",
+      "featured": true,
+      "visual": "lexicon",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "effects-lab",
+      "repo": "Procedural-Effects-Lab",
+      "name": "Effects Lab",
+      "eyebrow": "A LITTLE CONTROLLED WONDER",
+      "description": "当公式开始发光。进入由代码构建的光、运动与数字生命。",
+      "category": "lab",
+      "url": "https://hilt21.github.io/Procedural-Effects-Lab/",
+      "featured": true,
+      "visual": "effects",
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "about",
+      "repo": "aboutMe",
+      "name": "About Lu Tao",
+      "description": "铁路制动与系统集成，以及可验证的 AI 工程实践。我的职业路线与持续探索。",
+      "category": "about",
+      "url": "https://hilt21.github.io/aboutMe/",
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "state-of-rail",
+      "name": "State of Rail",
+      "description": "追踪制动、转向架与整车工程，把零散行业信号连接为研究地图。",
+      "category": "rail",
+      "url": "https://state-of-rail.dewyfinch8.chatgpt.site/",
+      "visible": true,
+      "order": 1,
+      "featured": true,
+      "visual": "brake",
+      "eyebrow": "RAILWAY ENGINEERING, IN CONTEXT"
+    },
+    {
+      "id": "project-router",
+      "repo": "project-router",
+      "name": "Project Router",
+      "description": "把个人工作流带到不同 Agent 工具。统一维护入口、规则、技能与反馈。",
+      "category": "ai",
+      "url": "https://github.com/hilt21/project-router",
+      "linkLabel": "查看源码",
+      "visible": true,
+      "order": 6
+    },
+    {
+      "id": "keplar",
+      "repo": "KeplarOS",
+      "name": "KeplarOS",
+      "description": "探索多 Agent 协作，把任务、状态与执行组织成可追踪的系统。",
+      "category": "ai",
+      "url": "https://github.com/hilt21/KeplarOS",
+      "linkLabel": "查看源码",
+      "visible": true,
+      "order": 7
+    },
+    {
+      "id": "novacreo",
+      "repo": "NovaCreo",
+      "name": "NovaCreo",
+      "description": "连接 CAD 与 AI，探索工程设计工作流中的确定性执行与验证。",
+      "category": "ai",
+      "url": "https://github.com/hilt21/NovaCreo",
+      "linkLabel": "查看源码",
+      "visible": true,
+      "order": 8
+    },
+    {
+      "id": "ai-mls",
+      "repo": "AI-MLS",
+      "name": "AI-MLS",
+      "description": "让每一次错题成为下一次进步的起点。从记录、理解到复习的学习循环。",
+      "category": "lab",
+      "url": "https://mls.embrake.dev/",
+      "visible": true,
+      "order": 9,
+      "access": "需授权"
+    }
+  ]
+}

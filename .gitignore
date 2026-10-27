@@ -1,0 +1,5 @@
+.DS_Store
+.openai/
+node_modules/
+qa/
+dist/

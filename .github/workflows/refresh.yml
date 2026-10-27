@@ -1,0 +1,48 @@
+name: Refresh project index
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**']
+  workflow_dispatch:
+  schedule:
+    - cron: '25 0 * * *'
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: project-index-main
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm test
+      - name: Discover public Pages sites
+        id: discovery
+        continue-on-error: true
+        run: npm run sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - run: npm run build && npm run check
+      - name: Commit generated index and snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html data/discovered.json sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore: refresh curated project index'
+            git push
+          fi
+      - name: Request Pages rebuild
+        run: gh api --method POST repos/${{ github.repository }}/pages/builds
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Report discovery failure
+        if: steps.discovery.outcome == 'failure'
+        run: |
+          echo 'Published using the last successful snapshot. Discovery requires attention.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1
