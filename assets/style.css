@@ -6,3 +6,6 @@
 @media(max-width:370px){.page-shell{padding:0 18px}nav{gap:12px}.brand-sub{display:none}.filters button{padding:8px}.feature-link{padding:15px 12px}.card-bottom h3{font-size:17px}.footer-star{font-size:40px}.index-strip>.mono{font-size:6px}h2{font-size:23px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 .route-map a:hover circle:last-child,.route-map a:focus-visible circle:last-child{fill:var(--lime);stroke-width:3}.route-map a:focus-visible{outline:none}.route-map a{cursor:pointer}
+@media(max-width:370px){h1{font-size:54px}}
+
+.mobile-access{display:none}.route-map>circle{pointer-events:none}@media(max-width:760px){.mobile-access{display:inline}}
