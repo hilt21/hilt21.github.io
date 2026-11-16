@@ -12,12 +12,15 @@ on:
 permissions:
   contents: write
   pages: write
+  actions: read
 concurrency:
   group: project-index-main
   cancel-in-progress: false
 jobs:
   validate-pr:
     if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,10 +58,24 @@ jobs:
             git push
             echo 'changed=true' >> "$GITHUB_OUTPUT"
           fi
-      - name: Request Pages rebuild
-        # Bot commits cannot trigger a native Pages build. Manual dispatch also supports recovery.
+      - name: Request Pages rebuild if no same-SHA build exists
+        # Preserve the explicit API fallback for GITHUB_TOKEN bot commits, but
+        # avoid requesting a second build when Pages already queued this SHA.
         if: steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
-        run: gh api --method POST repos/${{ github.repository }}/pages/builds
+        run: |
+          if [ "${{ steps.commit.outputs.changed }}" = 'true' ]; then
+            expected_sha="$(git rev-parse HEAD)"
+            for attempt in 1 2 3 4; do
+              existing="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs?event=dynamic&per_page=20" \
+                --jq ".workflow_runs[] | select(.head_sha == \"${expected_sha}\" and (.status == \"queued\" or .status == \"in_progress\" or .conclusion == \"success\")) | .id" 2>/dev/null || true)"
+              if [ -n "$existing" ]; then
+                echo "Existing native Pages build for ${expected_sha}: ${existing}; skip duplicate request."
+                exit 0
+              fi
+              sleep 2
+            done
+          fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Report discovery failure
