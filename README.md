@@ -32,6 +32,6 @@ npm run check
 
 `.github/workflows/refresh.yml` runs on main pushes, manual dispatch, and daily at **08:25 Asia/Shanghai (00:25 UTC)**. GitHub schedules are best effort.
 
-It tests, discovers, builds, checks, commits the generated HTML/snapshot, then requests a native Pages rebuild. GitHub Pages must publish from `main` / root. The explicit rebuild is necessary because commits made using `GITHUB_TOKEN` do not trigger another workflow. The bot commit cannot recursively run this workflow.
+It tests, discovers, builds and checks the index. A changed discovery snapshot updates the published content and triggers a bot commit and explicit native Pages rebuild. Unchanged discovery results retain the last published snapshot timestamp, skip the bot commit and skip the redundant rebuild; the successful check remains visible in Actions logs. Manual dispatch always requests a rebuild for recovery. GitHub Pages must publish from `main` / root. The explicit rebuild is necessary for `GITHUB_TOKEN` bot commits, which cannot trigger Pages themselves. A PR runs read-only tests/build/check without syncing or publishing.
 
 See [maintenance](docs/MAINTENANCE.md) and [verification](docs/QA.md) for current operating boundaries and evidence.
